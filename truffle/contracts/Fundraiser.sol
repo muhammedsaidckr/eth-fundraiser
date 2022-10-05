@@ -21,6 +21,10 @@ contract Fundraiser is Ownable {
 
 	event DonationReceived(address indexed donor, uint256 value);
 	event Withdraw(uint256 amount);
+	fallback() external payable {
+		totalDonations = totalDonations.add(msg.value);
+		donationsCount++;
+	}
 
 	constructor(
 		string memory _name,
